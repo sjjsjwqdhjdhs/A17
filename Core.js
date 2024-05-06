@@ -759,15 +759,15 @@ Typed *surrender* to surrender and admited defeat`
             buttons: [
               {
   "name": "quick_reply",
-  "buttonParamsJson": `{"display_text":"Allmenu 🗂️","id":"${prefix}allmenu"}`
+  "buttonParamsJson": `{"display_text":"Allmenu 🗂️","id":"${global.prefa[0]}menu"}`
    },
               {
                 "name": "quick_reply",
-                "buttonParamsJson": `{"display_text":"Owner 👤","id":"${prefix}owner"}`
+                "buttonParamsJson": `{"display_text":"Owner 👤","id":"${global.prefa[0]}owner"}`
               },
               {
                 "name": "quick_reply",
-                "buttonParamsJson": `{"display_text":"Script 📃","id":"${prefix}script"}`
+                "buttonParamsJson": `{"display_text":"Script 📃","id":"${global.prefa[0]}script"}`
               }
            ],
           })
