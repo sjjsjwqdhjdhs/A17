@@ -37,7 +37,20 @@ const { isLimit, limitAdd, getLimit, giveLimit, kurangBalance, getBalance, isGam
 const githubstalk = require('./lib/githubstalk');
 let { covid } = require('./lib/covid.js');
 const { Gempa } = require("./lib/gempa.js");
-
+//-------- TEST START
+const {
+	downloadContentFromMessage,
+    BufferJSON,
+    WA_DEFAULT_EPHEMERAL,
+    generateWAMessageFromContent,
+    proto,
+    generateWAMessageContent,
+    generateWAMessage,
+    prepareWAMessageMedia,
+    areJidsSameUser,
+    getContentType
+} = require('@whiskeysockets/baileys')
+//-------- END OF TEST
 const spaceemojis = ["🌌", "🌠", "🚀", "🪐", "🌟"];     // list of emojis for Space CMDs.
 const manyemojis = ["😄", "👍", "👏", "👌", "🥇", "🌟", "🎉", "🙌", "🤩", "💯", "🔥", "✨", "🚀", "💖", "🌈", "🌞", "🌠", "🌼", "💪", "😎", "💫", "💓", "🎈", "🎁", "🍾", "🎊", "🥳", "👑", "🌺", "🌻", "🌸"];
 const os = require('os');       // for os info
@@ -718,7 +731,57 @@ Typed *surrender* to surrender and admited defeat`
     //
     switch (command) {
 
+      //Buttons Test
+        
+      case 'btntes': case 'tesbtn':
+        if (isBanChat) return reply(mess.bangc);
+        if (isBan) return reply(mess.banned);
+        let msg = generateWAMessageFromContent(m.chat, {
+  viewOnceMessage: {
+    message: {
+        "messageContextInfo": {
+          "deviceListMetadata": {},
+          "deviceListMetadataVersion": 2
+        },
+        interactiveMessage: proto.Message.InteractiveMessage.create({
+          body: proto.Message.InteractiveMessage.Body.create({
+            text: 'test button A17'
+          }),
+          footer: proto.Message.InteractiveMessage.Footer.create({
+            text: 'Powered by Kai'
+          }),
+          header: proto.Message.InteractiveMessage.Header.create({
+            title: 'Test',
+            subtitle: null,
+            hasMediaAttachment: false
+          }),
+          nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+            buttons: [
+              {
+  "name": "quick_reply",
+  "buttonParamsJson": `{"display_text":"Allmenu 🗂️","id":"${prefix}allmenu"}`
+   },
+              {
+                "name": "quick_reply",
+                "buttonParamsJson": `{"display_text":"Owner 👤","id":"${prefix}owner"}`
+              },
+              {
+                "name": "quick_reply",
+                "buttonParamsJson": `{"display_text":"Script 📃","id":"${prefix}script"}`
+              }
+           ],
+          })
+        })
+    }
+  }
+}, {})
 
+A17.relayMessage(msg.key.remoteJid, msg.message, {
+  messageId: msg.key.id
+})
+        break;
+
+        
       //
       case 'sc': case 'script': case 'sourcecode': {
         if (isBan) return reply(mess.banned);
